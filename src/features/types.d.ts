@@ -29,4 +29,53 @@ interface ToDo {
     status: "pending" | "completed";
 }
 
-export type {Comment, Post, User, ToDo};
+interface API_PostsResponse {
+    meta: {
+        pagination: {
+            total: number;
+            pages: number;
+            page: number;
+            limit: number;
+            links: {
+                previous: string;
+                current: string;
+                next: string;
+            }
+        }
+    }
+    data: Post[];
+}
+interface API_UsersResponse {
+    meta: {
+        pagination: {
+            total: number;
+            pages: number;
+            page: number;
+            limit: number;
+            links: {
+                previous: string;
+                current: string;
+                next: string;
+            }
+        }
+    }
+    data: User[];
+}
+interface API_ToDosResponse {
+    meta: {
+        pagination: {
+            total: number;
+            pages: number;
+            page: number;
+            limit: number;
+            links: {
+                previous: string;
+                current: string;
+                next: string;
+            }
+        }
+    }
+    data: ToDo[];
+}
+
+export type {Comment, Post, User, ToDo, API_PostsResponse, API_UsersResponse, API_ToDosResponse};

@@ -1,9 +1,9 @@
 import axios from 'axios';
-import type {ToDo} from '../types';
+import type {API_ToDosResponse} from '../types';
 
-const fetchToDos = async (): Promise<ToDo[]> => {
-    return axios.get('https://gorest.co.in/public/v1/todos').then((response) => {
-        return response.data.data as ToDo[];
+const fetchToDos = async (pageNr: number): Promise<API_ToDosResponse[]> => {
+    return axios.get(`https://gorest.co.in/public/v1/todos?page=${pageNr}`).then((response) => {
+        return response.data;
     }).catch((error) => {
         console.error(error);
         throw error;
