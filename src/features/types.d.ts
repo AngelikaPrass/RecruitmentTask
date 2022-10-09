@@ -45,6 +45,7 @@ interface API_PostsResponse {
     }
     data: Post[];
 }
+
 interface API_UsersResponse {
     meta: {
         pagination: {
@@ -61,6 +62,7 @@ interface API_UsersResponse {
     }
     data: User[];
 }
+
 interface API_ToDosResponse {
     meta: {
         pagination: {
@@ -78,4 +80,10 @@ interface API_ToDosResponse {
     data: ToDo[];
 }
 
-export type {Comment, Post, User, ToDo, API_PostsResponse, API_UsersResponse, API_ToDosResponse};
+interface RegisteredUser {
+    id: number;
+    email: string;
+    password: string;
+}
+
+export type {Comment, Post, User, ToDo, API_PostsResponse, API_UsersResponse, API_ToDosResponse, RegisteredUser};
