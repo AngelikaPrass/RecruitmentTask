@@ -25,7 +25,7 @@ const fetchUser = async (id: number): Promise<User> => {
         }
     })
         .then((response) => {
-            return response.data.data;
+            return response.data.data as User;
         }).catch((error) => {
             console.error(error);
             throw error;

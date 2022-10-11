@@ -16,9 +16,10 @@ interface CommentFormProps {
 }
 
 const AddComment = (props: CommentFormProps) => {
-    const navigate = useNavigate();
     const context = useContext(UserContext);
+    const navigate = useNavigate();
     const user = context?.currentUser || JSON.parse(localStorage.getItem("user") || "");
+
 
     if (user === null || user === undefined || user == "") {
         return (<> </>);
@@ -48,7 +49,7 @@ const AddComment = (props: CommentFormProps) => {
                                 })
                                     .then(() => {
                                         alert("Comment added");
-                                        navigate("/posts/" + props.postId);
+                                        navigate(0); // refreshes the page
                                     }).catch((error) => {
                                     alert("Error");
                                     console.error(error);

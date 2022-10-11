@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import {Link, useParams} from "react-router-dom";
-import {getUserComments, getUserPosts, getUserTodos} from "../features/users/utils";
+import {getUserPosts, getUserTodos} from "../features/users/utils";
 import {fetchUser} from "../features/users/fetchUsers";
-import {Comment, Post, ToDo, User} from "../features/types";
+import {Post, ToDo, User} from "../features/types";
 import {dateConverter} from "../features/todos/fetchToDos";
 
 const UserComponent = () => {
@@ -10,13 +10,11 @@ const UserComponent = () => {
     const [user, setUser] = useState<User | null>(null);
     const [posts, setPosts] = useState<Post[]>([]);
     const [toDos, setToDos] = useState<ToDo[]>([]);
-    const [comments, setComments] = useState<Comment[]>([]);
 
     useEffect(() => {
         fetchUser(Number(id)).then(setUser);
         getUserPosts(Number(id)).then(setPosts);
         getUserTodos(Number(id)).then(setToDos);
-        getUserComments(Number(id)).then(setComments);
     }, [id]);
 
     return (
@@ -60,17 +58,6 @@ const UserComponent = () => {
                     </ul>
                 ))}
             </div>
-            <div className="grid place-items-center mt-1">
-                <h2 className="text-2xl font-bold text-center"> Comments by {user?.name}: </h2>
-                {comments.map((comment) => (
-                    <div key={comment.id} className="mt-1">
-                        <ul className="list-disc">
-                            <li className="font-light text-lg cursor-pointer hover:underline"> {comment.body} </li>
-                        </ul>
-                    </div>
-                ))}
-            </div>
-
         </div>
     );
 }

@@ -2,6 +2,7 @@ import {Field, Form, Formik} from 'formik';
 import {UserContext} from "../App";
 import React, {useContext} from "react";
 import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const NewPost = () => {
 
@@ -10,6 +11,7 @@ const NewPost = () => {
         body: string;
     }
 
+    const navigate = useNavigate();
     const context = useContext(UserContext);
     const user = localStorage.getItem("user");
     const initialValues: FormValues = {
@@ -38,7 +40,12 @@ const NewPost = () => {
                                         actions.setSubmitting(false);
                                         alert(JSON.stringify(values, null, 2));
                                     }
-                                )
+                                ).catch((error) => {
+                                    console.error(error);
+                                    actions.setSubmitting(false);
+                                    alert("Error");
+                                });
+                                navigate(0); // refreshes the page
                             }}
                     >
                         {({isSubmitting}) => (
