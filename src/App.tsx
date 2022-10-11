@@ -1,4 +1,4 @@
-import {Routes, Route} from 'react-router-dom';
+import {Route, Routes} from 'react-router-dom';
 import Home from './pages/Home';
 import Users from "./pages/Users";
 import Posts from "./pages/Posts";
@@ -8,15 +8,20 @@ import NewPost from "./pages/NewPost";
 import UserComponent from "./pages/UserComponent";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Logout from "./UI/Logout";
 import {createContext, useEffect, useState} from "react";
 import {RegisteredUser} from "./features/types";
 import Navbar from "./UI/Navbar";
+
+import './input.css';
+
 
 interface UserContextType {
     currentUser: RegisteredUser | null;
     setCurrentUser: (user: RegisteredUser | null) => void;
 }
+
+// new context to handle being logged in vs logged out
+// null user means logged out
 export const UserContext = createContext<UserContextType | null>(null);
 
 function App() {
@@ -24,7 +29,8 @@ function App() {
     const [currentUser, setCurrentUser] = useState<RegisteredUser | null>(null);
     const val = {
         currentUser,
-        setCurrentUser: (user: RegisteredUser | null) => setCurrentUser(user)};
+        setCurrentUser: (user: RegisteredUser | null) => setCurrentUser(user)
+    };
 
     useEffect(() => {
         const user = localStorage.getItem("user");

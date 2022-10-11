@@ -1,5 +1,8 @@
 import type {RegisteredUser} from "../types";
 
+// a fake "database" to store the registered users
+// that way we can implement the logging in functionalities and we have an option to add a post or a comment
+
 const registerUser = (user: RegisteredUser) => {
     const arr = JSON.parse(localStorage.getItem("database") || "[]");
     arr.push(user);

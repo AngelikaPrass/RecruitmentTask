@@ -16,7 +16,6 @@ const Users = () => {
 
     return (
         <div>
-            <h1>Users</h1>
             <Pagination page={page} fetchFunction={fetchUsers} setDisplay={setUsers} handlePageChange={handlePageChange}>
                 <UsersList users={users} />
             </Pagination>

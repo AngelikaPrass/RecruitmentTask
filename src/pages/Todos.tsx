@@ -1,6 +1,6 @@
 import ToDoList from "../features/todos/ToDoList";
 import {fetchToDos} from "../features/todos/fetchToDos";
-import { useSearchParams } from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
 import Pagination from "../UI/Pagination";
 import {useState} from "react";
 import type {ToDo} from "../features/types";
@@ -16,10 +16,10 @@ const ToDos = () => {
     };
 
     return (
-        <div>
-            <h1>ToDos</h1>
-            <Pagination page={page} fetchFunction={fetchToDos} setDisplay={setToDos} handlePageChange={handlePageChange}>
-                <ToDoList todos={todos} />
+        <div className="grid mt-2 ml-10">
+            <Pagination page={page} fetchFunction={fetchToDos} setDisplay={setToDos}
+                        handlePageChange={handlePageChange}>
+                <ToDoList todos={todos}/>
             </Pagination>
         </div>
     );

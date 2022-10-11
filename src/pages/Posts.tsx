@@ -1,6 +1,6 @@
 import PostList from "../features/posts/PostList";
 import {fetchPosts} from "../features/posts/fetchPosts";
-import { useSearchParams } from "react-router-dom";
+import {useSearchParams} from "react-router-dom";
 import Pagination from "../UI/Pagination";
 import {useState} from "react";
 import type {Post} from "../features/types";
@@ -17,7 +17,6 @@ const Posts = () => {
 
 return (
         <div>
-            <h1>Posts</h1>
             <Pagination page={page} fetchFunction={fetchPosts} setDisplay={setPosts} handlePageChange={handlePageChange}>
                 <PostList posts={posts} />
             </Pagination>
