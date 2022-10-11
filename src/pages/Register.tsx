@@ -1,8 +1,9 @@
 import {Form, Formik, Field} from 'formik';
 import axios from "axios";
 import type {RegisteredUser} from "../features/types";
-
 import {registerUser} from "../features/users/database";
+import React, {useContext} from "react";
+import {UserContext} from "../App";
 
 interface RegisterFormValues {
     name: string;
@@ -15,6 +16,7 @@ interface RegisterFormValues {
 }
 
 const Register = () => {
+    const userContext = useContext(UserContext);
     const initialValues: RegisterFormValues = {
         name: "",
         email: "",
@@ -24,7 +26,14 @@ const Register = () => {
         passwordConfirmation: ""
     };
 
-    return (
+    if(userContext!.currentUser != null) {
+        return (
+            <div>
+                <h1>You are already logged in</h1>
+            </div>
+        );
+    }
+    else return (
         <div>
             <h1>Register</h1>
             <Formik initialValues={initialValues}

@@ -1,4 +1,5 @@
 import type {User} from "../types";
+import {Link} from "react-router-dom";
 interface UsersListProps {
     users: User[];
 }
@@ -10,7 +11,7 @@ const UsersList = (props: UsersListProps) => {
             <div>
                 {users.map((user) => (
                     <div key={user.id}>
-                        <h3>{user.name}</h3>
+                        <Link to={user.id.toString()}>{user.name}</Link>
                         <p>{user.email}</p>
                     </div>
                 ))}

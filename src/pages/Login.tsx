@@ -17,7 +17,15 @@ const Login = () => {
         email: "",
         password: ""
     };
-    return (
+
+    if(userContext!.currentUser != null) {
+        return (
+            <div>
+                <h1>You are already logged in</h1>
+            </div>
+        );
+    }
+    else return (
         <div>
             <h1>Login</h1>
             <Formik initialValues={initialValues}
@@ -25,6 +33,7 @@ const Login = () => {
                         const user = getUser(values.email, values.password);
                         if(user != null) {
                             userContext!.setCurrentUser(user);
+                            localStorage.setItem("user", JSON.stringify(user));
                             alert("Logged in");
                         }
                         else {

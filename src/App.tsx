@@ -9,8 +9,9 @@ import UserComponent from "./pages/UserComponent";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Logout from "./UI/Logout";
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import {RegisteredUser} from "./features/types";
+import Navbar from "./UI/Navbar";
 
 interface UserContextType {
     currentUser: RegisteredUser | null;
@@ -25,11 +26,18 @@ function App() {
         currentUser,
         setCurrentUser: (user: RegisteredUser | null) => setCurrentUser(user)};
 
+    useEffect(() => {
+        const user = localStorage.getItem("user");
+        if (user) {
+            setCurrentUser(JSON.parse(user));
+        }
+    }, []);
+
     return (
 
         <UserContext.Provider value={val}>
         <div className="App">
-            <Logout />
+            <Navbar />
             <Routes>
                 <Route path="/" element={<Home/>}/>
                 <Route path="/users" element={<Users/>}/>

@@ -9,6 +9,7 @@ const Logout = () => {
     } else return (
         <button onClick={() => {
             context!.setCurrentUser(null);
+            localStorage.setItem("user", JSON.stringify(null));
             alert("Logged out");
         }}>Logout</button>
     )
