@@ -40,7 +40,6 @@ function App() {
     }, []);
 
     return (
-
         <UserContext.Provider value={val}>
         <div className="App">
             <Navbar />
